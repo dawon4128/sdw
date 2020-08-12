@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Callbacks - fullPage.js</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage callback function." />
+	<meta name="keywords"  content="fullpage,jquery,demo,callbac,function,event" />
+	<meta name="Resource-type" content="Document" />
+    
+	<link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+	<link rel="stylesheet" type="text/css" href="css/examples.css" />
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<style>
+        #section1 img {width:70%; height:auto;}
+        #section2 img{
+            width:25%;
+            left: -130%;
+            position:relative;
+            transition: all 1000ms ease;
+			
+        }
+		#section2 h1 {
+			padding: 3%;
+		}
+        #section2 p{
+            opacity: 0;
+            transition: all 1000ms ease;
+			
+        }
+        #section3 .intro{
+            left: -130%;
+            position:relative; 
+			
+        }
+		#section3 h1 {
+			padding: 3%;
+		}
+		#section3 ul{
+			width: 80%;
+			margin: 0 auto;
+		}
+		
+		#section3 ul  li{
+			float: left;
+			width: 30%;
+			padding-left: 44px;
+		}
+        /**
+        * Here we fire the animation for section 3.
+        * As the fp-viewing class in the body changes on each section and slide.
+        */
+        body.fp-viewing-3rdPage #section3 .intro{
+           left: 0%;
+        }
+        .fp-prev, .fp-next {display:none;}
+		
+		
+		.footer {
+			text-align: center; 
+			padding: 30px 50px;
+		} 
+		.s-footer {
+			padding: 25px;
+			text-align: center;
+		}
+
+		.footer li {
+			position: relative; 
+			display: inline; 
+			padding: 0 7px 0 10px; 
+		}
+		.footer li:before {
+			content: ''; 
+			width: 1px; 
+			height: 12px; 
+			background-color: #dbdbdb; 
+			position: absolute; 
+			left: 0; 
+			top: 2px;
+		}
+		.footer li:first-child:before {width: 0;}
+		.footer address {padding-top: 15px;}
+	</style>
+</head>
+<body>
+
+
+<!--
+<ul id="menu">
+	<li data-menuanchor="firstPage"><a href="#firstPage">ⓐ</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">ⓑ</a></li>
+	<li data-menuanchor="3rdPage"><a href="#3rdPage">ⓒ</a></li>
+</ul>
+-->
+
+<div id="fullpage">
+	 <div class="section " id="section1">
+      	<h1></h1>
+		<div class="slide"><img src="img/1.png" alt=""></div>
+		<div class="slide"><img src="img/2.png" alt=""></div>
+		<div class="slide"><img src="img/3.png" alt=""></div>
+        
+	</div>
+	<div class="section" id="section2">
+		<div class="intro">
+	    	<h1>Choose your own taste</h1>
+		    <p></p>
+            <img class="img1" src="img/6.png" alt="Cool" />
+			<img class="img2" src="img/7.png" alt="Cool" />
+			<img class="img3" src="img/8.png" alt="Cool" />
+            
+		</div>
+	</div>
+	<div class="section" id="section3">
+		<div class="intro">
+			<h1>Free content</h1>
+			<ul>
+			<li>
+				<iframe width="100%" height="315" src="https://www.youtube.com/embed/obJ5N0AsBsg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</li>
+			<li>
+				<iframe width="100%" height="315" src="https://www.youtube.com/embed/MPZJUR1lFXA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</li>
+			<li>
+				<iframe width="100%" height="315" src="https://www.youtube.com/embed/D3u-ovJ0lpo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</li>
+			</ul>
+			<p>자유로운 촬영과 편집으로 시청자들에게 가깝게 다가갈 수 있는 v-log!</p>
+		</div>
+	</div>
+</div>
+
+  <footer id="footer">
+        <div class="s-footer">
+           <img src="img/logo1-1.png" alt="">
+            <div class="row">
+                <div class="footer">
+                    <address>
+                       <p>Tel.02-734-1305 |
+						Fax.02-733-6389 |
+						E-mail.webmaster@naver.com</p> <br>
+                        Copyright ©
+                        <a href="">DAIRY PRODUCTS CO.,LTD. ALL RIGHT RESERVED</a>
+                        
+                    </address>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript" src="js/fullpage.js"></script>
+<script type="text/javascript" src="js/examples.js"></script>
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        sectionsColor: ['#fff', '#E2D0A4', '#7BAABE', 'whitesmoke', '#ccddff'],
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+        menu: '#menu',
+        afterLoad: function(origin, destination, direction){
+            //section 2
+            if(destination.index == 1){
+                document.querySelector('#section2').querySelector('.img1').style.left = -150 + 'px';
+                document.querySelector('#section2').querySelector('.img2').style.left = 40 + 'px';
+                document.querySelector('#section2').querySelector('.img3').style.left = 200 + 'px';
+                document.querySelector('#section2').querySelector('p').style.opacity = 1;
+            }
+
+            //back to original state
+            else if(origin && origin.index == 1){
+//                document.querySelector('#section2').querySelector('img').style.left = 130 + '%';
+                document.querySelector('#section2').querySelector('.img1').style.left = 130 + '%';
+                document.querySelector('#section2').querySelector('.img2').style.left = 130 + '%';
+                document.querySelector('#section2').querySelector('.img3').style.left = 130 + '%';
+                document.querySelector('#section2').querySelector
+				
+				('p').style.opacity = 0;
+            }
+            //section 3 is using the state classes to fire the animation
+            //see the CSS code above!
+        },
+        afterRender: function () { setInterval(function () { fullpage_api.moveSlideRight(); }, 3500); },
+        navigation: true,
+//        easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)'
+    });
+</script>
+
+</body>
+</html>
